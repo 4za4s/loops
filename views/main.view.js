@@ -121,7 +121,7 @@ function View() {
         if (this.updateStatGraphNeeded) statGraph.update();
         this.updateTime();
         //-------------------
-        document.getElementById(`Prestige`).textContent = "Current Prestige Bonus: " + intToString(prestigeBonus);
+        document.getElementById(`Prestige`).textContent = "Current Prestige Bonus: " + intToString(prestigeBonus, 6);
         //-------------------
     };
 
