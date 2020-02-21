@@ -71,6 +71,9 @@ const buffHardCaps = {
     Aspirant: 20
 };
 const buffs = {};
+//---------------
+let prestigeBonus = 1
+/----------------
 // eslint-disable-next-line prefer-const
 let townShowing = 0;
 // eslint-disable-next-line prefer-const
@@ -128,8 +131,10 @@ function closeTutorial() {
 }
 
 function clearSave() {
+    temp = prestigeBonus
     window.localStorage[saveName] = "";
     load();
+    prestigeBonus = temp
 }
 
 function loadDefaults() {
@@ -363,7 +368,9 @@ function load() {
     totalOfflineMs = toLoad.totalOfflineMs === undefined ? 0 : toLoad.totalOfflineMs;
     // capped at 1 month of gain
     addOffline(Math.min(Math.floor((new Date() - new Date(toLoad.date)) * offlineRatio), 2678400000));
-
+    //----------------
+    prestigeBonus = toLoad.prestigeBonus
+    //----------------
     if (toLoad.version75 === undefined) {
         const total = towns[0].totalSDungeon;
         dungeons[0][0].completed = Math.floor(total / 2);
@@ -469,6 +476,10 @@ function save() {
 
     toSave.date = new Date();
     toSave.totalOfflineMs = totalOfflineMs;
+    
+    //---------------
+    toSave.prestigeBonus = prestigeBonus
+    //---------------
 
     window.localStorage[saveName] = JSON.stringify(toSave);
 }
