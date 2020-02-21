@@ -63,7 +63,7 @@ let loadouts = [];
 let loadoutnames = ["1", "2", "3", "4", "5"];
 const skillList = ["Combat", "Magic", "Practical", "Alchemy", "Crafting", "Dark", "Chronomancy", "Pyromancy", "Restoration", "Spatiomancy"];
 const skills = {};
-const buffList = ["Ritual", "Imbuement", "Feast", "Aspirant"];
+const buffList = ["Ritual", "Imbuement", "Feast", "Aspirant", "Prestige"];
 const buffHardCaps = {
     Ritual: 666,
     Imbuement: 490,
