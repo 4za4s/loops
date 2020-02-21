@@ -540,3 +540,12 @@ function toggleOffline() {
     }
     view.updateTime();
 }
+
+function Prestige() {
+    for (const stat of statList) {
+         addPrestigeBonus += getTotalBonusXP(stat) * 0.001   
+    }
+    prestigeBonus += addPrestigeBonus
+    clearSave()
+    view.update()
+}
