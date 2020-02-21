@@ -3,7 +3,6 @@
 // eslint-disable-next-line prefer-const
 let gameSpeed = 1;
 const baseManaPerSecond = 50;
-let addPrestigeBonus = 0
 
 let curTime = new Date();
 let gameTicksLeft = 0;
@@ -543,6 +542,7 @@ function toggleOffline() {
 }
 
 function Prestige() {
+    let addPrestigeBonus = 0
     for (const stat of statList) {
          addPrestigeBonus += getTotalBonusXP(stat) * 0.00001   
     }
