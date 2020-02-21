@@ -829,7 +829,7 @@ function WarriorLessons() {
         Con: 0.2
     };
     this.skills = {
-        Combat: 100
+        Combat: 100  * prestigeBonus
     };
     this.manaCost = function() {
         return 1000;
@@ -844,7 +844,7 @@ function WarriorLessons() {
         return towns[0].getLevel("Secrets") >= 20;
     };
     this.finish = function() {
-        handleSkillExp(this.skills * prestigeBonus);
+        handleSkillExp(this.skills);
     };
 }
 
@@ -883,7 +883,7 @@ function MageLessons() {
     };
     this.skills = {
         Magic() {
-            return 100 * (1 + getSkillLevel("Alchemy") / 100);
+            return 100 * (1 + getSkillLevel("Alchemy") / 100) * prestigeBonus
         }
     };
     this.manaCost = function() {
@@ -899,7 +899,7 @@ function MageLessons() {
         return towns[0].getLevel("Secrets") >= 20;
     };
     this.finish = function() {
-        handleSkillExp(this.skills * prestigeBonus);
+        handleSkillExp(this.skills);
     };
 }
 
@@ -932,7 +932,7 @@ function HealTheSick() {
         Soul: 0.4
     };
     this.skills = {
-        Magic: 10
+        Magic: 10  * prestigeBonus
     };
     this.loopStats = ["Per", "Int", "Cha"];
     this.segments = 3;
@@ -968,7 +968,7 @@ function HealTheSick() {
         return getSkillLevel("Magic") >= 12;
     };
     this.finish = function() {
-        handleSkillExp(this.skills * prestigeBonus);
+        handleSkillExp(this.skills);
         if (towns[0].HealLoopCounter / 3 + 1 >= 10) unlockStory("heal10PatientsInALoop");
     };
 }
@@ -1008,7 +1008,7 @@ function FightMonsters() {
         Luck: 0.1
     };
     this.skills = {
-        Combat: 10
+        Combat: 10 * prestigeBonus
     };
     this.loopStats = ["Spd", "Spd", "Spd", "Str", "Str", "Str", "Con", "Con", "Con"];
     this.segments = 3;
@@ -1057,7 +1057,7 @@ function FightMonsters() {
         return getSkillLevel("Combat") >= 10;
     };
     this.finish = function() {
-        handleSkillExp(this.skills * prestigeBonus);
+        handleSkillExp(this.skills);
     };
 }
 // spd, defensive, aggressive
@@ -1102,8 +1102,8 @@ function SmallDungeon() {
         Luck: 0.1
     };
     this.skills = {
-        Combat: 5,
-        Magic: 5
+        Combat: 5 * prestigeBonus,
+        Magic: 5 * prestigeBonus
     };
     this.loopStats = ["Dex", "Con", "Dex", "Cha", "Dex", "Str", "Luck"];
     this.segments = 7;
@@ -1156,7 +1156,7 @@ function SmallDungeon() {
         return (getSkillLevel("Combat") + getSkillLevel("Magic")) >= 35;
     };
     this.finish = function() {
-        handleSkillExp(this.skills * prestigeBonus);
+        handleSkillExp(this.skills);
         unlockStory("smallDungeonAttempted");
         if (towns[0].SDungeonLoopCounter >= 42) unlockStory("clearSDungeon");
     };
@@ -1322,7 +1322,7 @@ function StartJourney() {
 
 function OpenRift() {
     this.name = "Open Rift";
-    this.expMult = 1;
+    this.expMult = 1 * prestigeBonus;
     this.townNum = 0;
     this.tooltip = _txt(`actions>${getXMLName(this.name)}>tooltip`);
     this.label = _txt(`actions>${getXMLName(this.name)}>label`);
