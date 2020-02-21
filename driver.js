@@ -548,6 +548,7 @@ function Prestige() {
     }
     prestigeBonus += addPrestigeBonus
     clearSave()
+    clearList()
     restart()
     view.update()
 }
