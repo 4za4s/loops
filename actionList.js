@@ -1353,7 +1353,7 @@ function OpenRift() {
 // town 2
 function ExploreForest() {
     this.name = "Explore Forest";
-    this.expMult = 1;
+    this.expMult = 1 * prestigeBonus;
     this.townNum = 1;
     this.tooltip = _txt(`actions>${getXMLName(this.name)}>tooltip`);
     this.label = _txt(`actions>${getXMLName(this.name)}>label`);
@@ -1398,7 +1398,7 @@ function ExploreForest() {
         return true;
     };
     this.finish = function() {
-        towns[1].finishProgress(this.varName, 100 * (resources.glasses ? 2 : 1));
+        towns[1].finishProgress(this.varName, 100 * (resources.glasses ? 2 : 1) * prestigeBonus);
     };
 }
 function adjustWildMana() {
@@ -1414,7 +1414,7 @@ function adjustHerbs() {
 function WildMana() {
     this.varName = "WildMana";
     this.name = "Wild Mana";
-    this.expMult = 1;
+    this.expMult = 1 * prestigeBonus;
     this.townNum = 1;
     this.tooltip = _txt(`actions>${getXMLName(this.name)}>tooltip`);
     this.tooltip2 = _txt(`actions>${getXMLName(this.name)}>tooltip2`);
@@ -1463,7 +1463,7 @@ function goldCostWildMana() {
 function GatherHerbs() {
     this.varName = "Herbs";
     this.name = "Gather Herbs";
-    this.expMult = 1;
+    this.expMult = 1 * prestigeBonus;
     this.townNum = 1;
     this.tooltip = _txt(`actions>${getXMLName(this.name)}>tooltip`);
     this.label = _txt(`actions>${getXMLName(this.name)}>label`);
@@ -1508,7 +1508,7 @@ function GatherHerbs() {
 function Hunt() {
     this.varName = "Hunt";
     this.name = "Hunt";
-    this.expMult = 1;
+    this.expMult = 1 * prestigeBonus;
     this.townNum = 1;
     this.tooltip = _txt(`actions>${getXMLName(this.name)}>tooltip`);
     this.label = _txt(`actions>${getXMLName(this.name)}>label`);
@@ -1557,7 +1557,7 @@ function Hunt() {
 
 function SitByWaterfall() {
     this.name = "Sit By Waterfall";
-    this.expMult = 4;
+    this.expMult = 4 * prestigeBonus;
     this.townNum = 1;
     this.tooltip = _txt(`actions>${getXMLName(this.name)}>tooltip`);
     this.label = _txt(`actions>${getXMLName(this.name)}>label`);
@@ -1593,7 +1593,7 @@ function SitByWaterfall() {
 
 function OldShortcut() {
     this.name = "Old Shortcut";
-    this.expMult = 1;
+    this.expMult = 1 * prestigeBonus;
     this.townNum = 1;
     this.tooltip = _txt(`actions>${getXMLName(this.name)}>tooltip`);
     this.label = _txt(`actions>${getXMLName(this.name)}>label`);
@@ -1635,14 +1635,14 @@ function OldShortcut() {
         return towns[1].getLevel("Forest") >= 20;
     };
     this.finish = function() {
-        towns[1].finishProgress(this.varName, 100);
+        towns[1].finishProgress(this.varName, 100 * prestigeBonus);
         view.adjustManaCost("Continue On");
     };
 }
 
 function TalkToHermit() {
     this.name = "Talk To Hermit";
-    this.expMult = 1;
+    this.expMult = 1 * prestigeBonus;
     this.townNum = 1;
     this.tooltip = _txt(`actions>${getXMLName(this.name)}>tooltip`);
     this.label = _txt(`actions>${getXMLName(this.name)}>label`);
@@ -1683,7 +1683,7 @@ function TalkToHermit() {
         return towns[1].getLevel("Shortcut") >= 20 && getSkillLevel("Magic") >= 40;
     };
     this.finish = function() {
-        towns[1].finishProgress(this.varName, 50 * (1 + towns[1].getLevel("Shortcut") / 100));
+        towns[1].finishProgress(this.varName, 50 * (1 + towns[1].getLevel("Shortcut") / 100) * prestigeBonus);
         view.adjustManaCost("Learn Alchemy");
         view.adjustManaCost("Gather Herbs");
         view.adjustManaCost("Practical Magic");
@@ -1692,7 +1692,7 @@ function TalkToHermit() {
 
 function PracticalMagic() {
     this.name = "Practical Magic";
-    this.expMult = 1.5;
+    this.expMult = 1.5 * prestigeBonus;
     this.townNum = 1;
     this.tooltip = _txt(`actions>${getXMLName(this.name)}>tooltip`);
     this.label = _txt(`actions>${getXMLName(this.name)}>label`);
@@ -1711,7 +1711,7 @@ function PracticalMagic() {
         Int: 0.5
     };
     this.skills = {
-        Practical: 100
+        Practical: 100 * prestigeBonus
     };
     this.manaCost = function() {
         return Math.ceil(4000 * (1 - towns[1].getLevel("Hermit") * 0.005));
@@ -1732,7 +1732,7 @@ function PracticalMagic() {
 
 function LearnAlchemy() {
     this.name = "Learn Alchemy";
-    this.expMult = 1.5;
+    this.expMult = 1.5 * prestigeBonus;
     this.townNum = 1;
     this.tooltip = _txt(`actions>${getXMLName(this.name)}>tooltip`);
     this.label = _txt(`actions>${getXMLName(this.name)}>label`);
@@ -1755,8 +1755,8 @@ function LearnAlchemy() {
         Int: 0.6
     };
     this.skills = {
-        Magic: 50,
-        Alchemy: 50
+        Magic: 50 * prestigeBonus,
+        Alchemy: 50 * prestigeBonus
     };
     this.canStart = function() {
         return resources.herbs >= 10;
@@ -1782,7 +1782,7 @@ function LearnAlchemy() {
 function BrewPotions() {
     this.varName = "Potions";
     this.name = "Brew Potions";
-    this.expMult = 1.5;
+    this.expMult = 1.5 * prestigeBonus;
     this.townNum = 1;
     this.tooltip = _txt(`actions>${getXMLName(this.name)}>tooltip`);
     this.label = _txt(`actions>${getXMLName(this.name)}>label`);
@@ -1804,8 +1804,8 @@ function BrewPotions() {
         Luck: 0.1,
     };
     this.skills = {
-        Magic: 50,
-        Alchemy: 25
+        Magic: 50 * prestigeBonus,
+        Alchemy: 25 * prestigeBonus
     };
     this.canStart = function() {
         return resources.herbs >= 10 && resources.reputation >= 5;
@@ -1831,7 +1831,7 @@ function BrewPotions() {
 
 function TrainDexterity() {
     this.name = "Train Dexterity";
-    this.expMult = 4;
+    this.expMult = 4 * prestigeBonus;
     this.townNum = 1;
     this.tooltip = _txt(`actions>${getXMLName(this.name)}>tooltip`);
     this.label = _txt(`actions>${getXMLName(this.name)}>label`);
@@ -1867,7 +1867,7 @@ function TrainDexterity() {
 
 function TrainSpeed() {
     this.name = "Train Speed";
-    this.expMult = 4;
+    this.expMult = 4 * prestigeBonus;
     this.townNum = 1;
     this.tooltip = _txt(`actions>${getXMLName(this.name)}>tooltip`);
     this.label = _txt(`actions>${getXMLName(this.name)}>label`);
@@ -1903,7 +1903,7 @@ function TrainSpeed() {
 
 function FollowFlowers() {
     this.name = "Follow Flowers";
-    this.expMult = 1;
+    this.expMult = 1 * prestigeBonus;
     this.townNum = 1;
     this.tooltip = _txt(`actions>${getXMLName(this.name)}>tooltip`);
     this.label = _txt(`actions>${getXMLName(this.name)}>label`);
@@ -1945,13 +1945,13 @@ function FollowFlowers() {
         return towns[1].getLevel("Forest") >= 50;
     };
     this.finish = function() {
-        towns[1].finishProgress(this.varName, 100 * (resources.glasses ? 2 : 1));
+        towns[1].finishProgress(this.varName, 100 * (resources.glasses ? 2 : 1) * prestigeBonus);
     };
 }
 
 function BirdWatching() {
     this.name = "Bird Watching";
-    this.expMult = 4;
+    this.expMult = 4 * prestigeBonus;
     this.townNum = 1;
     this.tooltip = _txt(`actions>${getXMLName(this.name)}>tooltip`);
     this.label = _txt(`actions>${getXMLName(this.name)}>label`);
@@ -1991,7 +1991,7 @@ function BirdWatching() {
 
 function ClearThicket() {
     this.name = "Clear Thicket";
-    this.expMult = 1;
+    this.expMult = 1 * prestigeBonus;
     this.townNum = 1;
     this.tooltip = _txt(`actions>${getXMLName(this.name)}>tooltip`);
     this.label = _txt(`actions>${getXMLName(this.name)}>label`);
@@ -2034,13 +2034,13 @@ function ClearThicket() {
         return towns[1].getLevel("Flowers") >= 20;
     };
     this.finish = function() {
-        towns[1].finishProgress(this.varName, 100);
+        towns[1].finishProgress(this.varName, 100 * prestigeBonus);
     };
 }
 
 function TalkToWitch() {
     this.name = "Talk To Witch";
-    this.expMult = 1;
+    this.expMult = 1 * prestigeBonus;
     this.townNum = 1;
     this.tooltip = _txt(`actions>${getXMLName(this.name)}>tooltip`);
     this.label = _txt(`actions>${getXMLName(this.name)}>label`);
@@ -2083,7 +2083,7 @@ function TalkToWitch() {
         return towns[1].getLevel("Thicket") >= 60 && getSkillLevel("Magic") >= 80;
     };
     this.finish = function() {
-        towns[1].finishProgress(this.varName, 100);
+        towns[1].finishProgress(this.varName, 100 * prestigeBonus);
         view.adjustManaCost("Dark Magic");
         view.adjustManaCost("Dark Ritual");
     };
@@ -2091,7 +2091,7 @@ function TalkToWitch() {
 
 function DarkMagic() {
     this.name = "Dark Magic";
-    this.expMult = 1.5;
+    this.expMult = 1.5 * prestigeBonus;
     this.townNum = 1;
     this.tooltip = _txt(`actions>${getXMLName(this.name)}>tooltip`);
     this.label = _txt(`actions>${getXMLName(this.name)}>label`);
@@ -2115,7 +2115,7 @@ function DarkMagic() {
     };
     this.skills = {
         Dark() {
-            return Math.floor(100 * (1 + getBuffLevel("Ritual") / 100));
+            return Math.floor(100 * (1 + getBuffLevel("Ritual") / 100) * prestigeBonus);
         }
     };
     this.manaCost = function() {
@@ -2143,7 +2143,7 @@ function DarkMagic() {
 function DarkRitual() {
     this.varName = "DarkRitual";
     this.name = "Dark Ritual";
-    this.expMult = 10;
+    this.expMult = 10 * prestigeBonus;
     this.townNum = 1;
     this.tooltip = _txt(`actions>${getXMLName(this.name)}>tooltip`);
     this.tooltip2 = _txt(`actions>${getXMLName(this.name)}>tooltip2`);
@@ -2199,7 +2199,7 @@ function DarkRitual() {
         return 1000000 * (segment * 2 + 1);
     };
     this.tickProgress = function(offset) {
-        return getSkillLevel("Dark") * (1 + getLevel(this.loopStats[(towns[1].DarkRitualLoopCounter + offset) % this.loopStats.length]) / 100) / (1 - towns[1].getLevel("Witch") * 0.005);
+        return getSkillLevel("Dark") * (1 + getLevel(this.loopStats[(towns[1].DarkRitualLoopCounter + offset) % this.loopStats.length]) / 100) / (1 - towns[1].getLevel("Witch") * 0.005) * prestigeBonus;
     };
     this.loopsFinished = function() {
         addBuffAmt("Ritual", 1);
@@ -2251,7 +2251,7 @@ function goldCostDarkRitual() {
 function ContinueOn() {
     this.varName = "Continue";
     this.name = "Continue On";
-    this.expMult = 2;
+    this.expMult = 2 * prestigeBonus;
     this.townNum = 1;
     this.tooltip = _txt(`actions>${getXMLName(this.name)}>tooltip`);
     this.label = _txt(`actions>${getXMLName(this.name)}>label`);
@@ -2287,7 +2287,7 @@ function ContinueOn() {
 
 function ExploreCity() {
     this.name = "Explore City";
-    this.expMult = 1;
+    this.expMult = 1 * prestigeBonus;
     this.townNum = 2;
     this.tooltip = _txt(`actions>${getXMLName(this.name)}>tooltip`);
     this.label = _txt(`actions>${getXMLName(this.name)}>label`);
@@ -2312,7 +2312,7 @@ function ExploreCity() {
         return true;
     };
     this.finish = function() {
-        towns[2].finishProgress(this.varName, 100 * (resources.glasses ? 2 : 1));
+        towns[2].finishProgress(this.varName, 100 * (resources.glasses ? 2 : 1) * prestigeBonus);
     };
 }
 function adjustSuckers() {
@@ -2322,7 +2322,7 @@ function adjustSuckers() {
 function Gamble() {
     this.varName = "Gamble";
     this.name = "Gamble";
-    this.expMult = 2;
+    this.expMult = 2 * prestigeBonus;
     this.townNum = 2;
     this.tooltip = _txt(`actions>${getXMLName(this.name)}>tooltip`);
     this.label = _txt(`actions>${getXMLName(this.name)}>label`);
@@ -2365,7 +2365,7 @@ function Gamble() {
 
 function GetDrunk() {
     this.name = "Get Drunk";
-    this.expMult = 3;
+    this.expMult = 3 * prestigeBonus;
     this.townNum = 2;
     this.tooltip = _txt(`actions>${getXMLName(this.name)}>tooltip`);
     this.label = _txt(`actions>${getXMLName(this.name)}>label`);
@@ -2394,14 +2394,14 @@ function GetDrunk() {
         return towns[2].getLevel("City") >= 20;
     };
     this.finish = function() {
-        towns[2].finishProgress(this.varName, 100);
+        towns[2].finishProgress(this.varName, 100 * prestigeBonus);
     };
 }
 
 function PurchaseMana() {
     this.varName = "Gold2";
     this.name = "Purchase Mana";
-    this.expMult = 1;
+    this.expMult = 1 * prestigeBonus;
     this.townNum = 2;
     this.tooltip = _txt(`actions>${getXMLName(this.name)}>tooltip`);
     this.label = _txt(`actions>${getXMLName(this.name)}>label`);
@@ -2429,7 +2429,7 @@ function PurchaseMana() {
 function SellPotions() {
     this.varName = "SellPotions";
     this.name = "Sell Potions";
-    this.expMult = 1;
+    this.expMult = 1 * prestigeBonus;
     this.townNum = 2;
     this.tooltip = _txt(`actions>${getXMLName(this.name)}>tooltip`);
     this.label = _txt(`actions>${getXMLName(this.name)}>label`);
@@ -2457,7 +2457,7 @@ function SellPotions() {
 function JoinAdvGuild() {
     this.varName = "AdvGuild";
     this.name = "Adventure Guild";
-    this.expMult = 1;
+    this.expMult = 1 * prestigeBonus;
     this.townNum = 2;
     this.tooltip = _txt(`actions>${getXMLName(this.name)}>tooltip`);
     this.label = _txt(`actions>${getXMLName(this.name)}>label`);
@@ -2486,7 +2486,7 @@ function JoinAdvGuild() {
         return (getSkillLevel("Magic") / 2 +
                 getSelfCombat("Combat")) *
                 (1 + getLevel(this.loopStats[(towns[2].AdvGuildLoopCounter + offset) % this.loopStats.length]) / 100) *
-                Math.sqrt(1 + towns[2].totalAdvGuild / 1000);
+                Math.sqrt(1 + towns[2].totalAdvGuild / 1000) * prestigeBonus;
     };
     this.loopsFinished = function() {
         // empty
@@ -2533,7 +2533,7 @@ function getAdvGuildRank(offset) {
 function GatherTeam() {
     this.varName = "GatherTeam";
     this.name = "Gather Team";
-    this.expMult = 3;
+    this.expMult = 3 * prestigeBonus;
     this.townNum = 2;
     this.tooltip = _txt(`actions>${getXMLName(this.name)}>tooltip`);
     this.label = _txt(`actions>${getXMLName(this.name)}>label`);
@@ -2572,7 +2572,7 @@ function GatherTeam() {
 function LargeDungeon() {
     this.varName = "LDungeon";
     this.name = "Large Dungeon";
-    this.expMult = 2;
+    this.expMult = 2 * prestigeBonus;
     this.townNum = 2;
     this.dungeonNum = 1;
     this.tooltip = _txt(`actions>${getXMLName(this.name)}>tooltip`);
@@ -2587,8 +2587,8 @@ function LargeDungeon() {
         Luck: 0.1
     };
     this.skills = {
-        Combat: 15,
-        Magic: 15
+        Combat: 15 * prestigeBonus,
+        Magic: 15 * prestigeBonus
     };
     this.loopStats = ["Cha", "Spd", "Str", "Cha", "Dex", "Dex", "Str"];
     this.segments = 7;
@@ -2618,7 +2618,7 @@ function LargeDungeon() {
     };
     this.tickProgress = function(offset) {
         const floor = Math.floor((towns[this.townNum].LDungeonLoopCounter) / this.segments + 0.0000001);
-        return (getTeamCombat() + getSkillLevel("Magic")) * (1 + getLevel(this.loopStats[(towns[this.townNum].LDungeonLoopCounter + offset) % this.loopStats.length]) / 100) * Math.sqrt(1 + dungeons[this.dungeonNum][floor].completed / 200);
+        return (getTeamCombat() + getSkillLevel("Magic")) * (1 + getLevel(this.loopStats[(towns[this.townNum].LDungeonLoopCounter + offset) % this.loopStats.length]) / 100) * Math.sqrt(1 + dungeons[this.dungeonNum][floor].completed / 200) * prestigeBonus;
     };
     this.loopsFinished = function() {
         const curFloor = Math.floor((towns[this.townNum].LDungeonLoopCounter) / this.segments + 0.0000001 - 1);
@@ -2649,7 +2649,7 @@ function LargeDungeon() {
 
 function CraftingGuild() {
     this.name = "Crafting Guild";
-    this.expMult = 1;
+    this.expMult = 1 * prestigeBonus;
     this.townNum = 2;
 
     this.tooltip = _txt(`actions>${getXMLName(this.name)}>tooltip`);
@@ -2683,7 +2683,7 @@ function CraftingGuild() {
         return (getSkillLevel("Magic") / 2 +
                 getSkillLevel("Crafting")) *
                 (1 + getLevel(this.loopStats[(towns[2].CraftGuildLoopCounter + offset) % this.loopStats.length]) / 100) *
-                Math.sqrt(1 + towns[2].totalCraftGuild / 1000);
+                Math.sqrt(1 + towns[2].totalCraftGuild / 1000) * prestigeBonus;
     };
     this.loopsFinished = function() {
         // empty
@@ -2731,7 +2731,7 @@ function getCraftGuildRank(offset) {
 function CraftArmor() {
     this.varName = "CraftArmor";
     this.name = "Craft Armor";
-    this.expMult = 1;
+    this.expMult = 1 * prestigeBonus;
     this.townNum = 2;
     this.tooltip = _txt(`actions>${getXMLName(this.name)}>tooltip`);
     this.label = _txt(`actions>${getXMLName(this.name)}>label`);
@@ -2766,7 +2766,7 @@ function CraftArmor() {
 function Apprentice() {
     this.varName = "Apprentice";
     this.name = "Apprentice";
-    this.expMult = 1.5;
+    this.expMult = 1.5 * prestigeBonus;
     this.townNum = 2;
     this.tooltip = _txt(`actions>${getXMLName(this.name)}>tooltip`);
     this.label = _txt(`actions>${getXMLName(this.name)}>label`);
@@ -2779,7 +2779,7 @@ function Apprentice() {
     };
     this.skills = {
         Crafting() {
-            return 10 * (1 + towns[2].getLevel("Apprentice") / 100);
+            return 10 * (1 + towns[2].getLevel("Apprentice") / 100) * prestigeBonus;
         }
     };
     this.affectedBy = ["Crafting Guild"];
@@ -2805,7 +2805,7 @@ function Apprentice() {
 function Mason() {
     this.varName = "Mason";
     this.name = "Mason";
-    this.expMult = 2;
+    this.expMult = 2 * prestigeBonus;
     this.townNum = 2;
     this.tooltip = _txt(`actions>${getXMLName(this.name)}>tooltip`);
     this.label = _txt(`actions>${getXMLName(this.name)}>label`);
@@ -2818,7 +2818,7 @@ function Mason() {
     };
     this.skills = {
         Crafting() {
-            return 20 * (1 + towns[2].getLevel("Mason") / 100);
+            return 20 * (1 + towns[2].getLevel("Mason") / 100) * prestigeBonus;
         }
     };
     this.affectedBy = ["Crafting Guild"];
@@ -2843,7 +2843,7 @@ function Mason() {
 function Architect() {
     this.varName = "Architect";
     this.name = "Architect";
-    this.expMult = 2.5;
+    this.expMult = 2.5 * prestigeBonus;
     this.townNum = 2;
     this.tooltip = _txt(`actions>${getXMLName(this.name)}>tooltip`);
     this.label = _txt(`actions>${getXMLName(this.name)}>label`);
@@ -2856,7 +2856,7 @@ function Architect() {
     };
     this.skills = {
         Crafting() {
-            return 40 * (1 + towns[2].getLevel("Architect") / 100);
+            return 40 * (1 + towns[2].getLevel("Architect") / 100) * prestigeBonus;
         }
     };
     this.affectedBy = ["Crafting Guild"];
@@ -2881,7 +2881,7 @@ function Architect() {
 function ReadBooks() {
     this.varName = "ReadBooks";
     this.name = "Read Books";
-    this.expMult = 4;
+    this.expMult = 4 * prestigeBonus;
     this.townNum = 2;
     this.tooltip = _txt(`actions>${getXMLName(this.name)}>tooltip`);
     this.label = _txt(`actions>${getXMLName(this.name)}>label`);
@@ -2913,7 +2913,7 @@ function ReadBooks() {
 
 function BuyPickaxe() {
     this.name = "Buy Pickaxe";
-    this.expMult = 1;
+    this.expMult = 1 * prestigeBonus;
     this.townNum = 2;
     this.tooltip = _txt(`actions>${getXMLName(this.name)}>tooltip`);
     this.label = _txt(`actions>${getXMLName(this.name)}>label`);
@@ -2950,7 +2950,7 @@ function BuyPickaxe() {
 function StartTrek() {
     this.varName = "StartTrek";
     this.name = "Start Trek";
-    this.expMult = 2;
+    this.expMult = 2 * prestigeBonus;
     this.townNum = 2;
     this.tooltip = _txt(`actions>${getXMLName(this.name)}>tooltip`);
     this.label = _txt(`actions>${getXMLName(this.name)}>label`);
@@ -2979,7 +2979,7 @@ function StartTrek() {
 
 function ClimbMountain() {
     this.name = "Climb Mountain";
-    this.expMult = 1;
+    this.expMult = 1 * prestigeBonus;
     this.townNum = 3;
     this.tooltip = _txt(`actions>${getXMLName(this.name)}>tooltip`);
     this.label = _txt(`actions>${getXMLName(this.name)}>label`);
@@ -3004,14 +3004,14 @@ function ClimbMountain() {
         return true;
     };
     this.finish = function() {
-        towns[3].finishProgress(this.varName, 100 * (resources.pickaxe ? 2 : 1));
+        towns[3].finishProgress(this.varName, 100 * (resources.pickaxe ? 2 : 1) * prestigeBonus);
     };
 }
 
 function ManaGeyser() {
     this.varName = "Geysers";
     this.name = "Mana Geyser";
-    this.expMult = 1;
+    this.expMult = 1 * prestigeBonus;
     this.townNum = 3;
     this.tooltip = _txt(`actions>${getXMLName(this.name)}>tooltip`);
     this.label = _txt(`actions>${getXMLName(this.name)}>label`);
@@ -3055,7 +3055,7 @@ function adjustGeysers() {
 
 function DecipherRunes() {
     this.name = "Decipher Runes";
-    this.expMult = 1;
+    this.expMult = 1 * prestigeBonus;
     this.townNum = 3;
     this.tooltip = _txt(`actions>${getXMLName(this.name)}>tooltip`);
     this.label = _txt(`actions>${getXMLName(this.name)}>label`);
@@ -3077,7 +3077,7 @@ function DecipherRunes() {
         return towns[3].getLevel("Mountain") >= 20;
     };
     this.finish = function() {
-        towns[3].finishProgress(this.varName, 100 * (resources.glasses ? 2 : 1));
+        towns[3].finishProgress(this.varName, 100 * (resources.glasses ? 2 : 1) * prestigeBonus);
         view.adjustManaCost("Chronomancy");
         view.adjustManaCost("Pyromancy");
     };
@@ -3085,7 +3085,7 @@ function DecipherRunes() {
 
 function Chronomancy() {
     this.name = "Chronomancy";
-    this.expMult = 2;
+    this.expMult = 2 * prestigeBonus;
     this.townNum = 3;
     this.tooltip = _txt(`actions>${getXMLName(this.name)}>tooltip`);
     this.label = _txt(`actions>${getXMLName(this.name)}>label`);
@@ -3097,7 +3097,7 @@ function Chronomancy() {
         Int: 0.6
     };
     this.skills = {
-        Chronomancy: 100
+        Chronomancy: 100 * prestigeBonus
     };
     this.manaCost = function() {
         return Math.ceil(10000 * (1 - towns[3].getLevel("Runes") * 0.005));
@@ -3116,7 +3116,7 @@ function Chronomancy() {
 function LoopingPotion() {
     this.varName = "LoopingPotion";
     this.name = "Looping Potion";
-    this.expMult = 2;
+    this.expMult = 2 * prestigeBonus;
     this.townNum = 3;
     this.tooltip = _txt(`actions>${getXMLName(this.name)}>tooltip`);
     this.label = _txt(`actions>${getXMLName(this.name)}>label`);
@@ -3127,7 +3127,7 @@ function LoopingPotion() {
         Soul: 0.1,
     };
     this.skills = {
-        Alchemy: 100
+        Alchemy: 100 * prestigeBonus
     };
     this.canStart = function() {
         return resources.herbs >= 200;
@@ -3152,7 +3152,7 @@ function LoopingPotion() {
 
 function Pyromancy() {
     this.name = "Pyromancy";
-    this.expMult = 2;
+    this.expMult = 2 * prestigeBonus;
     this.townNum = 3;
     this.tooltip = _txt(`actions>${getXMLName(this.name)}>tooltip`);
     this.label = _txt(`actions>${getXMLName(this.name)}>label`);
@@ -3164,7 +3164,7 @@ function Pyromancy() {
         Soul: 0.1
     };
     this.skills = {
-        Pyromancy: 100
+        Pyromancy: 100 * prestigeBonus
     };
     this.manaCost = function() {
         return Math.ceil(14000 * (1 - towns[3].getLevel("Runes") * 0.005));
@@ -3182,7 +3182,7 @@ function Pyromancy() {
 
 function ExploreCavern() {
     this.name = "Explore Cavern";
-    this.expMult = 1;
+    this.expMult = 1 * prestigeBonus;
     this.townNum = 3;
     this.tooltip = _txt(`actions>${getXMLName(this.name)}>tooltip`);
     this.label = _txt(`actions>${getXMLName(this.name)}>label`);
@@ -3206,14 +3206,14 @@ function ExploreCavern() {
         return towns[3].getLevel("Mountain") >= 40;
     };
     this.finish = function() {
-        towns[3].finishProgress(this.varName, 100);
+        towns[3].finishProgress(this.varName, 100 * prestigeBonus);
     };
 }
 
 function MineSoulstones() {
     this.varName = "MineSoulstones";
     this.name = "Mine Soulstones";
-    this.expMult = 1;
+    this.expMult = 1 * prestigeBonus;
     this.townNum = 3;
     this.tooltip = _txt(`actions>${getXMLName(this.name)}>tooltip`);
     this.label = _txt(`actions>${getXMLName(this.name)}>label`);
@@ -3260,7 +3260,7 @@ function adjustMineSoulstones() {
 function HuntTrolls() {
     this.varName = "HuntTrolls";
     this.name = "Hunt Trolls";
-    this.expMult = 1.5;
+    this.expMult = 1.5 * prestigeBonus;
     this.townNum = 3;
     this.tooltip = _txt(`actions>${getXMLName(this.name)}>tooltip`);
     this.label = _txt(`actions>${getXMLName(this.name)}>label`);
@@ -3274,7 +3274,7 @@ function HuntTrolls() {
         Int: 0.1
     };
     this.skills = {
-        Combat: 1000
+        Combat: 1000 * prestigeBonus
     };
     this.loopStats = ["Per", "Con", "Dex", "Str", "Int"];
     this.segments = 5;
@@ -3289,7 +3289,7 @@ function HuntTrolls() {
         return precision3(Math.pow(2, Math.floor((towns[this.townNum].HuntTrollsLoopCounter + segment) / this.segments + 0.0000001)) * 1e6);
     };
     this.tickProgress = function(offset) {
-        return (getSelfCombat() * (1 + getLevel(this.loopStats[(towns[3].HuntTrollsLoopCounter + offset) % this.loopStats.length]) / 100) * Math.sqrt(1 + towns[3].totalHuntTrolls / 100));
+        return (getSelfCombat() * (1 + getLevel(this.loopStats[(towns[3].HuntTrollsLoopCounter + offset) % this.loopStats.length]) / 100) * Math.sqrt(1 + towns[3].totalHuntTrolls / 100)) * prestigeBonus;
     };
     this.loopsFinished = function() {
         handleSkillExp(this.skills);
@@ -3314,7 +3314,7 @@ function HuntTrolls() {
 
 function CheckWalls() {
     this.name = "Check Walls";
-    this.expMult = 1;
+    this.expMult = 1 * prestigeBonus;
     this.townNum = 3;
     this.tooltip = _txt(`actions>${getXMLName(this.name)}>tooltip`);
     this.label = _txt(`actions>${getXMLName(this.name)}>label`);
@@ -3337,14 +3337,14 @@ function CheckWalls() {
         return towns[3].getLevel("Cavern") >= 80;
     };
     this.finish = function() {
-        towns[3].finishProgress(this.varName, 100);
+        towns[3].finishProgress(this.varName, 100 * prestigeBonus);
     };
 }
 
 function TakeArtifacts() {
     this.varName = "Artifacts";
     this.name = "Take Artifacts";
-    this.expMult = 1;
+    this.expMult = 1 * prestigeBonus;
     this.townNum = 3;
     this.tooltip = _txt(`actions>${getXMLName(this.name)}>tooltip`);
     this.label = _txt(`actions>${getXMLName(this.name)}>label`);
@@ -3384,7 +3384,7 @@ function adjustArtifacts() {
 function ImbueMind() {
     this.varName = "ImbueMind";
     this.name = "Imbue Mind";
-    this.expMult = 5;
+    this.expMult = 5 * prestigeBonus;
     this.townNum = 3;
     this.tooltip = _txt(`actions>${getXMLName(this.name)}>tooltip`);
     this.tooltip2 = _txt(`actions>${getXMLName(this.name)}>tooltip2`);
@@ -3431,7 +3431,7 @@ function ImbueMind() {
         return 100000000 * (segment * 5 + 1);
     };
     this.tickProgress = function(offset) {
-        return getSkillLevel("Magic") * (1 + getLevel(this.loopStats[(towns[3].ImbueMindLoopCounter + offset) % this.loopStats.length]) / 100);
+        return getSkillLevel("Magic") * (1 + getLevel(this.loopStats[(towns[3].ImbueMindLoopCounter + offset) % this.loopStats.length]) / 100) * prestigeBonus;
     };
     this.loopsFinished = function() {
         trainingLimits++;
@@ -3482,7 +3482,7 @@ function goldCostImbueMind() {
 function FaceJudgement() {
     this.varName = "FaceJudgement";
     this.name = "Face Judgement";
-    this.expMult = 2;
+    this.expMult = 2 * prestigeBonus;
     this.townNum = 3;
     this.tooltip = _txt(`actions>${getXMLName(this.name)}>tooltip`);
     this.label = _txt(`actions>${getXMLName(this.name)}>label`);
