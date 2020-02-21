@@ -3,6 +3,7 @@
 // eslint-disable-next-line prefer-const
 let gameSpeed = 1;
 const baseManaPerSecond = 50;
+let addPrestigeBonus = 0
 
 let curTime = new Date();
 let gameTicksLeft = 0;
