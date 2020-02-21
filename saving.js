@@ -369,7 +369,7 @@ function load() {
     // capped at 1 month of gain
     addOffline(Math.min(Math.floor((new Date() - new Date(toLoad.date)) * offlineRatio), 2678400000));
     //----------------
-    prestigeBonus = toLoad.prestigeBonus
+    prestigeBonus = toLoad.prestigeBonus === undefined ? 1 : toLoad.prestigeBonus;
     //----------------
     if (toLoad.version75 === undefined) {
         const total = towns[0].totalSDungeon;
