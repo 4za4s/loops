@@ -122,6 +122,11 @@ function View() {
         this.updateTime();
         //-------------------
         document.getElementById(`Prestige`).textContent = "Current Prestige Bonus: " + intToString(prestigeBonus, 10);
+        let prestigeGain = 0
+        for (const stat of statList) {
+         prestigeGain += (getTotalBonusXP(stat) - 1) * 0.00001   
+        }
+        document.getElementById(`PrestigeGain`).textContent = "resets ALL progress and gain " + intToString(prestigeGain, 10) + " prestige";
         //-------------------
     };
 
