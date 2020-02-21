@@ -3,6 +3,7 @@
 // eslint-disable-next-line prefer-const
 let gameSpeed = 1;
 const baseManaPerSecond = 50;
+const expBonus = 1
 
 let curTime = new Date();
 let gameTicksLeft = 0;
