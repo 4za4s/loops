@@ -73,7 +73,7 @@ const buffHardCaps = {
 const buffs = {};
 //---------------
 let prestigeBonus = 1
-/----------------
+//----------------
 // eslint-disable-next-line prefer-const
 let townShowing = 0;
 // eslint-disable-next-line prefer-const
