@@ -544,7 +544,7 @@ function toggleOffline() {
 function Prestige() {
     let addPrestigeBonus = 0
     for (const stat of statList) {
-         addPrestigeBonus += getTotalBonusXP(stat) * 0.00001   
+         addPrestigeBonus *= getTotalBonusXP(stat) * 0.00001   
     }
     prestigeBonus += addPrestigeBonus
     clearSave()
