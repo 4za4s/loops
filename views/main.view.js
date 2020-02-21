@@ -120,6 +120,9 @@ function View() {
         if (dungeonShowing !== undefined) this.updateSoulstoneChance(dungeonShowing);
         if (this.updateStatGraphNeeded) statGraph.update();
         this.updateTime();
+        //-------------------
+        document.getElementById(`Prestige`).textContent = "Current Prestige Bonus: " + intToString(prestigeBonus);
+        //-------------------
     };
 
     this.showStat = function(stat) {
