@@ -135,6 +135,7 @@ function clearSave() {
     window.localStorage[saveName] = "";
     load();
     prestigeBonus = temp
+    save()
 }
 
 function loadDefaults() {
