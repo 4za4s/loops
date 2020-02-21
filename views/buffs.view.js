@@ -5,8 +5,7 @@ Views.registerView("buffsContainer", {
             Ritual: "Dark Ritual",
             Imbuement: "Imbue Mind",
             Feast: "Great Feast",
-            Aspirant: "The Spire",
-            Prestige: "Prestige"
+            Aspirant: "The Spire"
         };
         let html = "";
         for (const buff of buffList) {
