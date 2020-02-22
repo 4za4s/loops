@@ -26,7 +26,7 @@ function getSpeedMult(zone) {
 }
 
 function getActualGameSpeed() {
-    return gameSpeed * getSpeedMult() * bonusSpeed;
+    return gameSpeed * getSpeedMult() * bonusSpeed * prestigeBonus;
 }
 
 function tick() {
