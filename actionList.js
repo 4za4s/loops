@@ -309,7 +309,7 @@ function Wander() {
     };
     this.affectedBy = ["Buy Glasses"];
     this.manaCost = function() {
-        return 250;
+        return Math.ceil(250 * prestigeBonus);
     };
     this.visible = function() {
         return true;
@@ -358,7 +358,7 @@ function SmashPots() {
         Spd: 0.6
     };
     this.manaCost = function() {
-        return Math.ceil(50 / (1 + getSkillLevel("Practical") / 100));
+        return Math.ceil(50 / (1 + getSkillLevel("Practical") / 100) * prestigeBonus);
     };
     this.visible = function() {
         return true;
@@ -374,7 +374,7 @@ function SmashPots() {
     };
 }
 function goldCostSmashPots() {
-    return Math.floor(100 * Math.pow(1 + getSkillLevel("Dark") / 60, 0.25));
+    return Math.floor(100 * Math.pow(1 + getSkillLevel("Dark") / 60, 0.25) * prestigeBonus);
 }
 
 function PickLocks() {
@@ -412,7 +412,7 @@ function PickLocks() {
         Luck: 0.1
     };
     this.manaCost = function() {
-        return 400;
+        return 400 * prestigeBonus;
     };
     this.visible = function() {
         return towns[0].getLevel("Wander") >= 3;
@@ -463,7 +463,7 @@ function BuyGlasses() {
         addResource("gold", -10);
     };
     this.manaCost = function() {
-        return 50;
+        return 50 * prestigeBonus;
     };
     this.visible = function() {
         return towns[0].getLevel("Wander") >= 3;
