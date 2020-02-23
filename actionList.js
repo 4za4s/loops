@@ -2897,7 +2897,7 @@ function ReadBooks() {
         return resources.glasses;
     };
     this.manaCost = function() {
-        return Math.ceil(000 * prestigeBonus);
+        return Math.ceil(2000 * prestigeBonus);
     };
     this.visible = function() {
         return towns[2].getLevel("City") >= 5;
