@@ -947,7 +947,7 @@ function HealTheSick() {
         return resources.reputation >= 1;
     };
     this.loopCost = function(segment) {
-        return Math.Ceil(fibonacci(2 + Math.floor((towns[0].HealLoopCounter + segment) / this.segments + 0.0000001)) * prestigeBonus) * 5000;
+        return Math.ceil(fibonacci(2 + Math.floor((towns[0].HealLoopCounter + segment) / this.segments + 0.0000001)) * prestigeBonus) * 5000;
     };
     this.tickProgress = function(offset) {
         return getSkillLevel("Magic") * (1 + getLevel(this.loopStats[(towns[0].HealLoopCounter + offset) % this.loopStats.length]) / 100) * Math.sqrt(1 + towns[0].totalHeal / 100) * prestigeBonus;
