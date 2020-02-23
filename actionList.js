@@ -2727,7 +2727,6 @@ function getCraftGuildRank(offset) {
     name += `, Mult x${bonus}`;
     return { name, bonus };
 }
-//-------------------------------------------------------------------------------------------------------------------------------------
 function CraftArmor() {
     this.varName = "CraftArmor";
     this.name = "Craft Armor";
@@ -2787,7 +2786,7 @@ function Apprentice() {
         return guild === "Crafting";
     };
     this.manaCost = function() {
-        return 2000;
+        return 2000 * prestigeBonus;
     };
     this.visible = function() {
         return towns[2].getLevel("Drunk") >= 20;
@@ -2796,7 +2795,7 @@ function Apprentice() {
         return towns[2].getLevel("Drunk") >= 40;
     };
     this.finish = function() {
-        towns[2].finishProgress(this.varName, 30 * getCraftGuildRank().bonus);
+        towns[2].finishProgress(this.varName, 30 * getCraftGuildRank().bonus * prestigeBonus);
         handleSkillExp(this.skills);
         view.adjustExpGain(new Apprentice());
     };
@@ -2826,7 +2825,7 @@ function Mason() {
         return guild === "Crafting";
     };
     this.manaCost = function() {
-        return 2000;
+        return 2000 * prestigeBonus;
     };
     this.visible = function() {
         return towns[2].getLevel("Drunk") >= 40;
@@ -2835,7 +2834,7 @@ function Mason() {
         return towns[2].getLevel("Drunk") >= 60 && towns[2].getLevel("Apprentice") >= 100;
     };
     this.finish = function() {
-        towns[2].finishProgress(this.varName, 20 * getCraftGuildRank().bonus);
+        towns[2].finishProgress(this.varName, 20 * getCraftGuildRank().bonus * prestigeBonus);
         handleSkillExp(this.skills);
     };
 }
@@ -2864,7 +2863,7 @@ function Architect() {
         return guild === "Crafting";
     };
     this.manaCost = function() {
-        return 2000;
+        return 2000 * prestigeBonus;
     };
     this.visible = function() {
         return towns[2].getLevel("Drunk") >= 60;
@@ -2873,7 +2872,7 @@ function Architect() {
         return towns[2].getLevel("Drunk") >= 80 && towns[2].getLevel("Mason") >= 100;
     };
     this.finish = function() {
-        towns[2].finishProgress(this.varName, 10 * getCraftGuildRank().bonus);
+        towns[2].finishProgress(this.varName, 10 * getCraftGuildRank().bonus * prestigeBonus);
         handleSkillExp(this.skills);
     };
 }
@@ -2898,7 +2897,7 @@ function ReadBooks() {
         return resources.glasses;
     };
     this.manaCost = function() {
-        return 2000;
+        return 2000 * prestigeBonus;
     };
     this.visible = function() {
         return towns[2].getLevel("City") >= 5;
@@ -2934,7 +2933,7 @@ function BuyPickaxe() {
         addResource("gold", -200);
     };
     this.manaCost = function() {
-        return 3000;
+        return 3000 * prestigeBonus;
     };
     this.visible = function() {
         return towns[2].getLevel("City") >= 60;
@@ -2964,7 +2963,7 @@ function StartTrek() {
         return 1;
     };
     this.manaCost = function() {
-        return Math.ceil(12000);
+        return Math.ceil(12000 * prestigeBonus);
     };
     this.visible = function() {
         return towns[2].getLevel("City") >= 30;
@@ -2995,7 +2994,7 @@ function ClimbMountain() {
     };
     this.affectedBy = ["Buy Pickaxe"];
     this.manaCost = function() {
-        return 800;
+        return 800 * prestigeBonus;
     };
     this.visible = function() {
         return true;
@@ -3031,7 +3030,7 @@ function ManaGeyser() {
     };
     this.affectedBy = ["Buy Pickaxe"];
     this.manaCost = function() {
-        return 2000;
+        return 2000 * prestigeBonus;
     };
     this.canStart = function() {
         return resources.pickaxe;
@@ -3044,7 +3043,7 @@ function ManaGeyser() {
     };
     this.finish = function() {
         towns[3].finishRegular(this.varName, 100, () => {
-            addMana(5000);
+            addMana(5000 * prestigeBonus);
             return 5000;
         });
     };
@@ -3068,7 +3067,7 @@ function DecipherRunes() {
     };
     this.affectedBy = ["Buy Glasses"];
     this.manaCost = function() {
-        return 1200;
+        return 1200 * prestigeBonus;
     };
     this.visible = function() {
         return towns[3].getLevel("Mountain") >= 2;
@@ -3100,7 +3099,7 @@ function Chronomancy() {
         Chronomancy: 100 * prestigeBonus
     };
     this.manaCost = function() {
-        return Math.ceil(10000 * (1 - towns[3].getLevel("Runes") * 0.005));
+        return Math.ceil(10000 * (1 - towns[3].getLevel("Runes") * 0.005) * prestigeBonus);
     };
     this.visible = function() {
         return towns[3].getLevel("Runes") >= 8;
@@ -3136,7 +3135,7 @@ function LoopingPotion() {
         addResource("herbs", -200);
     };
     this.manaCost = function() {
-        return Math.ceil(30000);
+        return Math.ceil(30000 * prestigeBonus);
     };
     this.visible = function() {
         return getSkillLevel("Alchemy") >= 10 && getSkillLevel("Chronomancy") >= 20;
@@ -3167,7 +3166,7 @@ function Pyromancy() {
         Pyromancy: 100 * prestigeBonus
     };
     this.manaCost = function() {
-        return Math.ceil(14000 * (1 - towns[3].getLevel("Runes") * 0.005));
+        return Math.ceil(14000 * (1 - towns[3].getLevel("Runes") * 0.005) * prestigeBonus);
     };
     this.visible = function() {
         return towns[3].getLevel("Runes") >= 16;
@@ -3197,7 +3196,7 @@ function ExploreCavern() {
         Spd: 0.1
     };
     this.manaCost = function() {
-        return 1500;
+        return 1500 * prestigeBonus;
     };
     this.visible = function() {
         return towns[3].getLevel("Mountain") >= 10;
@@ -3233,7 +3232,7 @@ function MineSoulstones() {
     };
     this.affectedBy = ["Buy Pickaxe"];
     this.manaCost = function() {
-        return 5000;
+        return 5000 * prestigeBonus;
     };
     this.canStart = function() {
         return resources.pickaxe;
@@ -3283,10 +3282,10 @@ function HuntTrolls() {
         this.segmentNames.push($(segmentName).text());
     });
     this.manaCost = function() {
-        return 8000;
+        return 8000 * prestigeBonus;
     };
     this.loopCost = function(segment) {
-        return precision3(Math.pow(2, Math.floor((towns[this.townNum].HuntTrollsLoopCounter + segment) / this.segments + 0.0000001)) * 1e6);
+        return precision3(Math.pow(2, Math.floor((towns[this.townNum].HuntTrollsLoopCounter + segment) / this.segments + 0.0000001)) * 1e6 * prestigeBonus);
     };
     this.tickProgress = function(offset) {
         return (getSelfCombat() * (1 + getLevel(this.loopStats[(towns[3].HuntTrollsLoopCounter + offset) % this.loopStats.length]) / 100) * Math.sqrt(1 + towns[3].totalHuntTrolls / 100)) * prestigeBonus;
@@ -3328,7 +3327,7 @@ function CheckWalls() {
         Int: 0.4
     };
     this.manaCost = function() {
-        return 3000;
+        return 3000 * prestigeBonus;
     };
     this.visible = function() {
         return towns[3].getLevel("Cavern") >= 40;
@@ -3363,7 +3362,7 @@ function TakeArtifacts() {
         Int: 0.2,
     };
     this.manaCost = function() {
-        return 1500;
+        return 1500 * prestigeBonus;
     };
     this.visible = function() {
         return towns[3].getLevel("Illusions") >= 1;
@@ -3403,7 +3402,7 @@ function ImbueMind() {
         this.segmentNames.push($(segmentName).text());
     });
     this.manaCost = function() {
-        return 500000;
+        return 500000 * prestigeBonus;
     };
     this.allowed = function() {
         return 1;
@@ -3428,7 +3427,7 @@ function ImbueMind() {
         return towns[3].ImbueMindLoopCounter === 0 && tempCanStart && getBuffLevel("Imbuement") < parseInt(document.getElementById("buffImbuementCap").value);
     };
     this.loopCost = function(segment) {
-        return 100000000 * (segment * 5 + 1);
+        return 100000000 * (segment * 5 + 1) * prestigeBonus;
     };
     this.tickProgress = function(offset) {
         return getSkillLevel("Magic") * (1 + getLevel(this.loopStats[(towns[3].ImbueMindLoopCounter + offset) % this.loopStats.length]) / 100) * prestigeBonus;
@@ -3496,7 +3495,7 @@ function FaceJudgement() {
         return 1;
     };
     this.manaCost = function() {
-        return 30000;
+        return 30000 * prestigeBonus;
     };
     this.visible = function() {
         return towns[3].getLevel("Mountain") >= 40;
