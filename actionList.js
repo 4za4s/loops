@@ -829,7 +829,7 @@ function WarriorLessons() {
         Con: 0.2
     };
     this.skills = {
-        Combat: 100  * prestigeBonus
+        Combat: Math.floor(100  * prestigeBonus)
     };
     this.manaCost = function() {
         return Math.ceil(1000 * prestigeBonus);
