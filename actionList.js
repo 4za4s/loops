@@ -932,7 +932,7 @@ function HealTheSick() {
         Soul: 0.4
     };
     this.skills = {
-        Magic: 10  * prestigeBonus
+        Magic: Math.floor(10 * prestigeBonus)
     };
     this.loopStats = ["Per", "Int", "Cha"];
     this.segments = 3;
@@ -1008,7 +1008,7 @@ function FightMonsters() {
         Luck: 0.1
     };
     this.skills = {
-        Combat: 10 * prestigeBonus
+        Combat: Math.floor(10 * prestigeBonus)
     };
     this.loopStats = ["Spd", "Spd", "Spd", "Str", "Str", "Str", "Con", "Con", "Con"];
     this.segments = 3;
@@ -1102,8 +1102,8 @@ function SmallDungeon() {
         Luck: 0.1
     };
     this.skills = {
-        Combat: 5 * prestigeBonus,
-        Magic: 5 * prestigeBonus
+        Combat: Math.floor(5 * prestigeBonus),
+        Magic: Math.floor(5 * prestigeBonus)
     };
     this.loopStats = ["Dex", "Con", "Dex", "Cha", "Dex", "Str", "Luck"];
     this.segments = 7;
@@ -1711,7 +1711,7 @@ function PracticalMagic() {
         Int: 0.5
     };
     this.skills = {
-        Practical: 100 * prestigeBonus
+        Practical: Math.floor(100 * prestigeBonus)
     };
     this.manaCost = function() {
         return Math.ceil(4000 * (1 - towns[1].getLevel("Hermit") * 0.005) * prestigeBonus);
@@ -1755,8 +1755,8 @@ function LearnAlchemy() {
         Int: 0.6
     };
     this.skills = {
-        Magic: 50 * prestigeBonus,
-        Alchemy: 50 * prestigeBonus
+        Magic: Math.floor(50 * prestigeBonus),
+        Alchemy: Math.floor(50 * prestigeBonus)
     };
     this.canStart = function() {
         return resources.herbs >= 10;
@@ -1804,8 +1804,8 @@ function BrewPotions() {
         Luck: 0.1,
     };
     this.skills = {
-        Magic: 50 * prestigeBonus,
-        Alchemy: 25 * prestigeBonus
+        Magic: Math.floor(50 * prestigeBonus),
+        Alchemy: Math.floor(25 * prestigeBonus)
     };
     this.canStart = function() {
         return resources.herbs >= 10 && resources.reputation >= 5;
