@@ -2549,11 +2549,11 @@ function GatherTeam() {
         return 5;
     };
     this.canStart = function() {
-        return guild === "Adventure" && resources.gold >= (resources.teamMembers + 1) * 200;
+        return guild === "Adventure" && resources.gold >= (resources.teamMembers + 1) * 100;
     };
     this.cost = function() {
         // cost comes after finish
-        addResource("gold", -(resources.teamMembers) * 200);
+        addResource("gold", -(resources.teamMembers) * 100);
     };
     this.manaCost = function() {
         return Math.ceil(2000 * prestigeBonus);
