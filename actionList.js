@@ -2587,8 +2587,8 @@ function LargeDungeon() {
         Luck: 0.1
     };
     this.skills = {
-        Combat: 15 * prestigeBonus,
-        Magic: 15 * prestigeBonus
+        Combat: Math.floor(15 * prestigeBonus),
+        Magic: Math.floor(15 * prestigeBonus)
     };
     this.loopStats = ["Cha", "Spd", "Str", "Cha", "Dex", "Dex", "Str"];
     this.segments = 7;
