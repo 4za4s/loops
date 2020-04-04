@@ -3096,7 +3096,7 @@ function Chronomancy() {
         Int: 0.6
     };
     this.skills = {
-        Chronomancy: 100 * prestigeBonus
+        Chronomancy: Math.floor(100 * prestigeBonus)
     };
     this.manaCost = function() {
         return Math.ceil(10000 * (1 - towns[3].getLevel("Runes") * 0.005) * prestigeBonus);
@@ -3163,7 +3163,7 @@ function Pyromancy() {
         Soul: 0.1
     };
     this.skills = {
-        Pyromancy: 100 * prestigeBonus
+        Pyromancy: Math.floor(100 * prestigeBonus)
     };
     this.manaCost = function() {
         return Math.ceil(14000 * (1 - towns[3].getLevel("Runes") * 0.005) * prestigeBonus);
