@@ -374,7 +374,7 @@ function SmashPots() {
     };
 }
 function goldCostSmashPots() {
-    return Math.ceil(Math.floor(100 * Math.pow(1 + getSkillLevel("Dark") / 60, 0.25))) * prestigeBonus);
+    return Math.ceil(Math.floor(100 * Math.pow(1 + getSkillLevel("Dark") / 60, 0.25)) * prestigeBonus);
 }
 
 function PickLocks() {
