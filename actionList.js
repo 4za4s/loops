@@ -374,7 +374,7 @@ function SmashPots() {
     };
 }
 function goldCostSmashPots() {
-    return Math.floor(100 * Math.pow(1 + getSkillLevel("Dark") / 60, 0.25) * prestigeBonus);
+    return Math.ceil(Math.floor(100 * Math.pow(1 + getSkillLevel("Dark") / 60, 0.25))) * prestigeBonus);
 }
 
 function PickLocks() {
@@ -500,7 +500,7 @@ function BuyMana() {
         return towns[0].getLevel("Wander") >= 20;
     };
     this.finish = function() {
-        addMana(Math.floor(resources.gold * 50 * prestigeBonus));
+        addMana(Math.ceil((Math.floor(resources.gold * 50) * prestigeBonus));
         resetResource("gold");
     };
 }
@@ -1457,7 +1457,7 @@ function WildMana() {
     };
 }
 function goldCostWildMana() {
-    return Math.floor(250 * Math.pow(1 + getSkillLevel("Dark") / 60, 0.25) * prestigeBonus);
+    return Math.ceil(Math.floor(250 * Math.pow(1 + getSkillLevel("Dark") / 60, 0.25)) * prestigeBonus);
 }
 
 function GatherHerbs() {
