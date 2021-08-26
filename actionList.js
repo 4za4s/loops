@@ -500,7 +500,7 @@ function BuyMana() {
         return towns[0].getLevel("Wander") >= 20;
     };
     this.finish = function() {
-        addMana(Math.ceil((Math.floor(resources.gold * 50) * prestigeBonus));
+        addMana(Math.ceil(Math.floor(resources.gold * 50) * prestigeBonus));
         resetResource("gold");
     };
 }
