@@ -131,10 +131,8 @@ function closeTutorial() {
 }
 
 function clearSave() {
-    temp = prestigeBonus
     window.localStorage[saveName] = "";
     load();
-    prestigeBonus = temp
     save()
 }
 
