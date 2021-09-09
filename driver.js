@@ -545,7 +545,7 @@ function Prestige() {
     for (const stat of statList) {
          prestigeBonus += (getTotalBonusXP(stat) - 1) * 0.00001   
     }
-    toSave = {}
+    let toSave = {}
     toSave.prestigeBonus = prestigeBonus
     window.localStorage[saveName] = JSON.stringify(toSave);
     save()
