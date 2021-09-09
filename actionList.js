@@ -3126,7 +3126,7 @@ function LoopingPotion() {
         Soul: 0.1,
     };
     this.skills = {
-        Alchemy: 100 * prestigeBonus
+        Alchemy: Math.floor(100 * prestigeBonus)
     };
     this.canStart = function() {
         return resources.herbs >= 200;
