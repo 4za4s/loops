@@ -3273,7 +3273,7 @@ function HuntTrolls() {
         Int: 0.1
     };
     this.skills = {
-        Combat: 1000 * prestigeBonus
+        Combat: Math.floor(1000 * prestigeBonus)
     };
     this.loopStats = ["Per", "Con", "Dex", "Str", "Int"];
     this.segments = 5;
