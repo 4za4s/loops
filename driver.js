@@ -547,8 +547,11 @@ function Prestige() {
          addPrestigeBonus += (getTotalBonusXP(stat) - 1) * 0.00001   
     }
     prestigeBonus += addPrestigeBonus
+	temp = prestigeBonus
     clearSave()
     clearList()
     restart()
+	prestigeBonus = temp
+	save()
     view.update()
 }
