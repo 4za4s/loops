@@ -542,13 +542,12 @@ function toggleOffline() {
 }
 
 function Prestige() {
-    let addPrestigeBonus = 0
     for (const stat of statList) {
-         addPrestigeBonus += (getTotalBonusXP(stat) - 1) * 0.00001   
+         prestigeBonus += (getTotalBonusXP(stat) - 1) * 0.00001   
     }
-    prestigeBonus += addPrestigeBonus
-    window.localStorage[saveName] = JSON.stringify({prestigeBonus});
-    load()
+    toSave = {}
+    toSave.prestigeBonus = prestigeBonus
+    window.localStorage[saveName] = JSON.stringify(toSave);
     clearList()
     restart()
     save()
