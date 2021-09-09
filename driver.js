@@ -548,8 +548,9 @@ function Prestige() {
     toSave = {}
     toSave.prestigeBonus = prestigeBonus
     window.localStorage[saveName] = JSON.stringify(toSave);
+    save()
     clearList()
     restart()
-    save()
+    load()
     view.update()
 }
