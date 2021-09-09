@@ -150,7 +150,7 @@ function restart() {
     shouldRestart = false;
     timer = 0;
     timeCounter = 0;
-    timeNeeded = Math.floor(Math.ceil(timeNeededInitial) * prestigeBonus);
+    timeNeeded = Math.ceil(timeNeededInitial * prestigeBonus);
     document.title = "Idle Loops";
     resetResources();
     restartStats();
