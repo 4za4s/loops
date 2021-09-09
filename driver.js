@@ -547,11 +547,10 @@ function Prestige() {
          addPrestigeBonus += (getTotalBonusXP(stat) - 1) * 0.00001   
     }
     prestigeBonus += addPrestigeBonus
-    let temp = prestigeBonus
-    clearSave()
+    window.localStorage[saveName] = JSON.stringify({prestigeBonus});
+    load()
     clearList()
     restart()
-    prestigeBonus = temp
     save()
     view.update()
 }
